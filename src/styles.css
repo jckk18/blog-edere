@@ -228,3 +228,62 @@ body {
   min-height: 0;
   overflow: hidden;
 }
+
+/* Mobile hardening: prevents horizontal overflow and improves reading rhythm on phones. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+body { min-width: 0; }
+main, section, article, header, footer { min-width: 0; }
+p, h1, h2, h3, h4, h5, a, span, li, blockquote {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  body { line-height: 1.65; }
+
+  .bg-paper,
+  .paper {
+    background-size: 22px 22px, 48px 48px;
+    background-position: 0 0, 14px 18px;
+  }
+
+  .display {
+    letter-spacing: -0.028em;
+    line-height: 0.92;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-panel::before {
+    background-size: 32px 32px;
+    opacity: 0.28;
+  }
+
+  .hero-panel::after {
+    right: -9rem;
+    bottom: -10rem;
+    width: 20rem;
+    height: 20rem;
+    filter: blur(34px);
+  }
+
+  .dropcap > p:first-of-type::first-letter {
+    font-size: 3.35em;
+    line-height: 0.86;
+    padding-right: 0.1em;
+  }
+
+  .marquee-track {
+    gap: 1.6rem;
+    animation-duration: 52s;
+  }
+
+  .chapter:hover { transform: none; }
+}
