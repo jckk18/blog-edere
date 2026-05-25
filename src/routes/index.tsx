@@ -74,7 +74,7 @@ function PhishingFlow() {
       </div>
       <div className="grid gap-3 md:grid-cols-4">
         {steps.map((step, index) => (
-          <div key={step.title} className="group relative overflow-hidden rounded-[1.5rem] border border-rule bg-paper p-5 transition-transform duration-300 hover:-translate-y-1">
+          <div key={step.title} className="group relative rounded-[1.5rem] border border-rule bg-paper p-5 transition-transform duration-300 hover:-translate-y-1">
             <div className="mb-5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-paper mono text-[12px]">
               {String(index + 1).padStart(2, "0")}
             </div>
@@ -665,9 +665,14 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
         </div>
       </button>
 
-      <div className="grid transition-[grid-template-rows] duration-700 ease-out" style={{ gridTemplateRows: open ? "1fr" : "0fr" }}>
-        <div className="overflow-hidden min-h-0">
-          <div className="grid grid-cols-12 gap-x-4 pb-14 md:pb-20">
+      <div
+        className="overflow-hidden transition-[max-height,opacity] duration-700 ease-out"
+        style={{
+          maxHeight: open ? "3000px" : "0",
+          opacity: open ? 1 : 0,
+        }}
+      >
+        <div className="grid grid-cols-12 gap-x-4 pb-14 md:pb-20">
             <div className="hidden md:col-span-1 md:block" />
             <div className="dropcap col-span-12 md:col-span-10 lg:col-span-8">
               {entry.render()}
@@ -679,7 +684,6 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
             </div>
           </div>
         </div>
-      </div>
     </article>
   );
 }
