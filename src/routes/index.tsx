@@ -665,25 +665,19 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
         </div>
       </button>
 
-      <div
-        className="overflow-hidden transition-[max-height,opacity] duration-700 ease-out"
-        style={{
-          maxHeight: open ? "3000px" : "0",
-          opacity: open ? 1 : 0,
-        }}
-      >
+      {open && (
         <div className="grid grid-cols-12 gap-x-4 pb-14 md:pb-20">
-            <div className="hidden md:col-span-1 md:block" />
-            <div className="dropcap col-span-12 md:col-span-10 lg:col-span-8">
-              {entry.render()}
-              <div className="mt-10 flex flex-wrap gap-x-5 gap-y-2 border-t border-rule pt-5">
-                {entry.tags.map((tag) => (
-                  <span key={tag} className="mono text-[11px] uppercase tracking-widest text-muted-ink">— {tag}</span>
-                ))}
-              </div>
+          <div className="hidden md:col-span-1 md:block" />
+          <div className="dropcap col-span-12 md:col-span-10 lg:col-span-8">
+            {entry.render()}
+            <div className="mt-10 flex flex-wrap gap-x-5 gap-y-2 border-t border-rule pt-5">
+              {entry.tags.map((tag) => (
+                <span key={tag} className="mono text-[11px] uppercase tracking-widest text-muted-ink">— {tag}</span>
+              ))}
             </div>
           </div>
         </div>
+      )}
     </article>
   );
 }
