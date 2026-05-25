@@ -6,9 +6,18 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1];
+const githubPagesBase = repositoryName ? `/${repositoryName}/` : "/";
+const base = process.env.VITE_BASE_PATH ?? (process.env.GITHUB_ACTIONS === "true" ? githubPagesBase : "/");
+
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
 // @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
 export default defineConfig({
+  vite: {
+    // Required for GitHub Pages when the site is published at /<repository-name>/.
+    // Locally it remains "/". You may override it with VITE_BASE_PATH if needed.
+    base,
+  },
   tanstackStart: {
     server: { entry: "server" },
   },
