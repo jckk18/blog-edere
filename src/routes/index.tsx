@@ -416,6 +416,7 @@ function Wordmark() {
 
 const NAV = [
   { label: "Índice", href: "#entradas" },
+  { label: "Autora", href: "#autora" },
   { label: "Marco legal", href: "#marco-legal" },
   { label: "Impacto", href: "#impacto" },
   { label: "Casos", href: "#casos" },
@@ -500,7 +501,7 @@ function Navbar() {
 }
 
 function Marquee() {
-  const items = ["LECDI · 2001", "6 capítulos", "Universidad Bicentenaria de Aragua", "Maracay · Venezuela", "Edición 2026", "Phishing & delitos informáticos"];
+  const items = ["LECDI · 2001", "6 capítulos", "Camila Alva", "C.I. 33.055.779", "Informática", "Escuela de Derecho UBA", "Maracay · Venezuela", "Edición 2026", "Phishing & delitos informáticos"];
   const loop = [...items, ...items];
   return (
     <div className="overflow-hidden border-y border-rule bg-ink py-3 text-paper">
@@ -596,6 +597,48 @@ function ExecutiveSummary() {
             <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{text}</p>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function AuthorProfile() {
+  const ref = useReveal<HTMLDivElement>();
+  const details = [
+    { label: "Autora", value: "Camila Alva" },
+    { label: "Cédula de identidad", value: "33.055.779" },
+    { label: "Asignatura", value: "Informática" },
+    { label: "Institución", value: "Escuela de Derecho de la UBA" },
+  ];
+
+  return (
+    <section id="autora" className="bg-paper py-8 md:py-12">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <div ref={ref} className="fade-in-up overflow-hidden rounded-[2.4rem] border border-rule bg-ink text-paper shadow-deep">
+          <div className="grid gap-0 lg:grid-cols-[0.95fr_1.35fr]">
+            <div className="relative overflow-hidden p-7 md:p-10">
+              <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/35 blur-3xl" />
+              <div className="relative z-10">
+                <div className="eyebrow text-accent-light">Datos de identificación</div>
+                <h2 className="serif mt-4 max-w-md text-5xl leading-none text-paper md:text-7xl">
+                  Autora del <em className="italic text-accent-light">blog</em>
+                </h2>
+                <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-paper-muted">
+                  Información académica incorporada para identificar formalmente la autoría de la publicación digital.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-3 border-t border-white/10 bg-white/[0.04] p-5 md:grid-cols-2 md:p-7 lg:border-l lg:border-t-0">
+              {details.map((item) => (
+                <article key={item.label} className="rounded-[1.6rem] border border-white/10 bg-white/[0.07] p-5 backdrop-blur-sm">
+                  <div className="mono text-[10px] uppercase tracking-[0.2em] text-accent-light">{item.label}</div>
+                  <div className="serif mt-3 text-3xl leading-tight text-paper md:text-4xl">{item.value}</div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -746,7 +789,12 @@ function Footer() {
               Publicación académica sobre el phishing como delito informático en Venezuela. Análisis legal, psicológico y preventivo para fomentar una cultura de ciberseguridad.
             </p>
             <div className="mt-6 mono text-[11px] uppercase tracking-[0.2em] text-paper">
-              Universidad Bicentenaria de Aragua · Maracay
+              Universidad Bicentenaria de Aragua · Escuela de Derecho · Maracay
+            </div>
+            <div className="mt-5 rounded-[1.4rem] border border-white/10 bg-white/[0.06] p-4 text-paper-muted">
+              <p className="mono text-[10px] uppercase tracking-[0.2em] text-accent-light">Autora</p>
+              <p className="serif mt-2 text-3xl text-paper">Camila Alva</p>
+              <p className="mt-1 text-[13px] leading-relaxed">C.I. 33.055.779 · Informática · Escuela de Derecho de la UBA</p>
             </div>
           </div>
 
@@ -767,7 +815,7 @@ function Footer() {
 
         <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-6 md:flex-row md:items-baseline md:justify-between">
           <p className="mono text-[11px] uppercase tracking-widest text-paper-muted">
-            Elaborado con fines académicos · Informática · UBA 2026
+            Elaborado por Camila Alva · Informática · Escuela de Derecho UBA 2026
           </p>
           <p className="serif text-2xl text-paper">© Ciber<em className="italic text-accent-light">Venezuela</em></p>
         </div>
@@ -776,7 +824,7 @@ function Footer() {
   );
 }
 
-function Index() {
+export function Index() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <Navbar />
@@ -784,6 +832,7 @@ function Index() {
         <Hero />
         <Marquee />
         <ExecutiveSummary />
+        <AuthorProfile />
         <FeaturedPull />
         <IndexSection />
       </main>
