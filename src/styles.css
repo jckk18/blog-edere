@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -208,4 +208,23 @@ body {
   flex: 1;
   height: 1px;
   background: rgba(17, 24, 39, 0.12);
+}
+
+/* Robust accordion content: keeps chapter text mounted and prevents disappearing text during open/close. */
+.chapter-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    grid-template-rows 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.28s ease;
+}
+.chapter-open .chapter-content {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.chapter-content-inner {
+  min-height: 0;
+  overflow: hidden;
 }
