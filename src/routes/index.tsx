@@ -631,19 +631,19 @@ function FeaturedPull() {
 
 function EntryItem({ entry, index }: { entry: Entry; index: number }) {
   const [open, setOpen] = useState(index === 0);
-  const ref = useReveal<HTMLElement>();
+  const panelId = `chapter-panel-${index}`;
 
   return (
     <article
-      ref={ref}
       id={entry.sectionId}
-      className={"chapter fade-in-up scroll-mt-24 border-t border-rule " + (open ? "chapter-open" : "")}
-      style={{ animationDelay: `${index * 80}ms` }}
+      className={"chapter scroll-mt-24 border-t border-rule " + (open ? "chapter-open" : "")}
     >
       <button
+        id={panelId + "-button"}
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
+        aria-controls={panelId}
         className="grid w-full grid-cols-12 gap-x-4 gap-y-4 px-5 py-9 text-left md:px-8 md:py-12"
       >
         <div className="col-span-2 md:col-span-1">
@@ -665,19 +665,26 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
         </div>
       </button>
 
-      {open && (
-        <div className="grid grid-cols-12 gap-x-4 px-5 pb-14 md:px-8 md:pb-20">
-          <div className="hidden md:col-span-1 md:block" />
-          <div className="dropcap col-span-12 md:col-span-10 lg:col-span-8">
-            {entry.render()}
-            <div className="mt-10 flex flex-wrap gap-x-5 gap-y-2 border-t border-rule pt-5">
-              {entry.tags.map((tag) => (
-                <span key={tag} className="mono text-[11px] uppercase tracking-widest text-muted-ink">— {tag}</span>
-              ))}
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={`${panelId}-button`}
+        className="chapter-content"
+      >
+        <div className="chapter-content-inner">
+          <div className="grid grid-cols-12 gap-x-4 px-5 pb-14 md:px-8 md:pb-20">
+            <div className="hidden md:col-span-1 md:block" />
+            <div className="dropcap col-span-12 md:col-span-10 lg:col-span-8">
+              {entry.render()}
+              <div className="mt-10 flex flex-wrap gap-x-5 gap-y-2 border-t border-rule pt-5">
+                {entry.tags.map((tag) => (
+                  <span key={tag} className="mono text-[11px] uppercase tracking-widest text-muted-ink">— {tag}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </article>
   );
 }
