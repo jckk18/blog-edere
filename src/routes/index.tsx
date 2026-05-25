@@ -644,7 +644,7 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
-        className="grid w-full grid-cols-12 gap-x-4 gap-y-4 py-9 text-left md:py-12"
+        className="grid w-full grid-cols-12 gap-x-4 gap-y-4 px-5 py-9 text-left md:px-8 md:py-12"
       >
         <div className="col-span-2 md:col-span-1">
           <span className="chapter-num serif text-4xl text-ink-2 transition-colors md:text-5xl">{entry.num}</span>
@@ -666,7 +666,7 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
       </button>
 
       {open && (
-        <div className="grid grid-cols-12 gap-x-4 pb-14 md:pb-20">
+        <div className="grid grid-cols-12 gap-x-4 px-5 pb-14 md:px-8 md:pb-20">
           <div className="hidden md:col-span-1 md:block" />
           <div className="dropcap col-span-12 md:col-span-10 lg:col-span-8">
             {entry.render()}
@@ -699,7 +699,7 @@ function IndexSection() {
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-[2.4rem] border border-rule bg-surface px-5 shadow-soft md:px-8">
+        <div className="rounded-[2.4rem] border border-rule bg-surface shadow-soft">
           {entries.map((entry, index) => (<EntryItem key={entry.num} entry={entry} index={index} />))}
         </div>
       </div>
