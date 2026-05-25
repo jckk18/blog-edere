@@ -18,11 +18,11 @@ interface Entry {
 
 // ---------- Typographic primitives ----------
 const H = ({ children }: { children: ReactNode }) => (
-  <h3 className="serif mt-11 mb-4 text-3xl leading-tight text-ink md:text-4xl">{children}</h3>
+  <h3 className="serif mt-9 mb-4 text-[28px] leading-tight text-ink md:mt-11 md:text-4xl">{children}</h3>
 );
 
 const P = ({ children }: { children: ReactNode }) => (
-  <p className="mb-5 text-[17px] leading-[1.78] text-ink-2">{children}</p>
+  <p className="mb-5 text-[16px] leading-[1.72] text-ink-2 md:text-[17px] md:leading-[1.78]">{children}</p>
 );
 
 const UL = ({ children }: { children: ReactNode }) => (
@@ -41,14 +41,14 @@ const STRONG = ({ children }: { children: ReactNode }) => (
 
 function LegalArticle({ title, body, penalty }: { title: string; body: string; penalty: string }) {
   return (
-    <figure className="my-6 rounded-[2rem] border border-rule bg-surface p-6 shadow-soft md:p-7">
+    <figure className="my-6 rounded-[1.6rem] border border-rule bg-surface p-5 shadow-soft md:rounded-[2rem] md:p-7">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="eyebrow text-accent">{title}</div>
         <div className="rounded-full border border-rule bg-paper px-3 py-1 mono text-[11px] text-muted-ink">
           Pena · {penalty}
         </div>
       </div>
-      <blockquote className="serif text-2xl leading-snug text-ink italic md:text-3xl">
+      <blockquote className="serif text-[24px] leading-snug text-ink italic md:text-3xl">
         &ldquo;{body}&rdquo;
       </blockquote>
     </figure>
@@ -64,17 +64,17 @@ function PhishingFlow() {
   ];
 
   return (
-    <div className="my-8 rounded-[2rem] border border-rule bg-surface p-4 shadow-soft md:p-6">
+    <div className="my-8 rounded-[1.6rem] border border-rule bg-surface p-4 shadow-soft md:rounded-[2rem] md:p-6">
       <div className="mb-5 flex items-center justify-between gap-4">
         <div>
           <div className="eyebrow text-accent">Mapa del ataque</div>
-          <h4 className="serif mt-1 text-3xl text-ink">De la confianza al fraude</h4>
+          <h4 className="serif mt-1 text-[28px] leading-tight text-ink md:text-3xl">De la confianza al fraude</h4>
         </div>
         <Fingerprint className="h-8 w-8 text-accent" />
       </div>
       <div className="grid gap-3 md:grid-cols-4">
         {steps.map((step, index) => (
-          <div key={step.title} className="group relative rounded-[1.5rem] border border-rule bg-paper p-5 transition-transform duration-300 hover:-translate-y-1">
+          <div key={step.title} className="group relative rounded-[1.35rem] border border-rule bg-paper p-4 transition-transform duration-300 hover:-translate-y-1 md:p-5">
             <div className="mb-5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-paper mono text-[12px]">
               {String(index + 1).padStart(2, "0")}
             </div>
@@ -96,10 +96,10 @@ function SignalComparison() {
 
   return (
     <div className="my-8 grid gap-4 md:grid-cols-2">
-      <div className="rounded-[2rem] border border-rule bg-surface p-6 shadow-soft">
+      <div className="rounded-[1.6rem] border border-rule bg-surface p-5 shadow-soft md:rounded-[2rem] md:p-6">
         <div className="mb-4 flex items-center gap-3">
           <CheckCircle2 className="h-5 w-5 text-positive" />
-          <h4 className="serif text-3xl text-ink">Señales confiables</h4>
+          <h4 className="serif text-[28px] leading-tight text-ink md:text-3xl">Señales confiables</h4>
         </div>
         <ul className="space-y-3">
           {safe.map((item) => (
@@ -110,10 +110,10 @@ function SignalComparison() {
           ))}
         </ul>
       </div>
-      <div className="rounded-[2rem] border border-warning/30 bg-warning-soft p-6 shadow-soft">
+      <div className="rounded-[1.6rem] border border-warning/30 bg-warning-soft p-5 shadow-soft md:rounded-[2rem] md:p-6">
         <div className="mb-4 flex items-center gap-3">
           <AlertTriangle className="h-5 w-5 text-warning" />
-          <h4 className="serif text-3xl text-ink">Señales de alerta</h4>
+          <h4 className="serif text-[28px] leading-tight text-ink md:text-3xl">Señales de alerta</h4>
         </div>
         <ul className="space-y-3">
           {risky.map((item) => (
@@ -451,7 +451,7 @@ function Navbar() {
         borderBottom: scrolled ? "1px solid rgba(17,24,39,0.10)" : "1px solid transparent",
       }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-5 md:py-4 lg:px-8">
         <Wordmark />
         <nav className="hidden items-center gap-6 lg:flex">
           {NAV.map((n) => (
@@ -472,7 +472,7 @@ function Navbar() {
         onClick={() => setOpen(false)}
       >
         <aside
-          className={"absolute right-0 top-0 h-full w-[86%] max-w-sm bg-paper shadow-deep transition-transform duration-300 " + (open ? "translate-x-0" : "translate-x-full")}
+          className={"absolute right-0 top-0 h-full w-[88%] max-w-sm overflow-y-auto bg-paper shadow-deep transition-transform duration-300 " + (open ? "translate-x-0" : "translate-x-full")}
           onClick={(event) => event.stopPropagation()}
         >
           <div className="flex items-center justify-between border-b border-rule p-5">
@@ -487,7 +487,7 @@ function Navbar() {
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                className="serif flex items-baseline justify-between rounded-2xl border border-transparent px-2 py-4 text-2xl text-ink transition-colors hover:border-rule hover:bg-surface"
+                className="serif flex items-baseline justify-between rounded-2xl border border-transparent px-3 py-3.5 text-[26px] leading-none text-ink transition-colors hover:border-rule hover:bg-surface"
               >
                 <span>{n.label}</span>
                 <span className="mono text-[11px] text-accent">0{i + 1}</span>
@@ -519,11 +519,11 @@ function Marquee() {
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-paper pt-28 pb-12 md:pt-36 md:pb-20">
+    <section id="top" className="relative overflow-hidden bg-paper pt-20 pb-10 sm:pt-24 md:pt-36 md:pb-20">
       <div className="absolute left-1/2 top-[-18rem] h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="hero-panel relative overflow-hidden rounded-[2.8rem] px-6 py-7 text-paper shadow-deep md:px-10 md:py-10 lg:px-12">
-          <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/15 pb-5">
+      <div className="mx-auto max-w-7xl px-3 sm:px-5 lg:px-8">
+        <div className="hero-panel relative overflow-hidden rounded-[1.8rem] px-5 py-6 text-paper shadow-deep sm:rounded-[2.2rem] md:rounded-[2.8rem] md:px-10 md:py-10 lg:px-12">
+          <div className="relative z-10 flex flex-col items-start justify-between gap-2 border-b border-white/15 pb-4 sm:flex-row sm:items-center sm:gap-4 md:pb-5">
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-paper-muted">Vol. 01 · N.º 06</div>
             <div className="mono text-[11px] uppercase tracking-[0.22em] text-paper-muted">Mayo 2026 — Maracay, VE</div>
           </div>
@@ -531,25 +531,25 @@ function Hero() {
           <div className="relative z-10 grid grid-cols-12 gap-x-8 gap-y-10 pt-12 md:pt-16">
             <div className="col-span-12 lg:col-span-8">
               <div className="eyebrow text-accent-light">Investigación académica</div>
-              <h1 className="display mt-5 max-w-5xl text-paper" style={{ fontSize: "clamp(52px, 9.5vw, 132px)" }}>
+              <h1 className="display mt-5 max-w-5xl text-paper" style={{ fontSize: "clamp(44px, 14vw, 132px)" }}>
                 Phishing <em className="italic text-accent-light">en</em><br />
                 Venezuela.
               </h1>
-              <p className="serif mt-7 max-w-3xl text-2xl leading-[1.32] text-paper-muted md:text-[34px]">
+              <p className="serif mt-6 max-w-3xl text-[24px] leading-[1.28] text-paper-muted sm:text-[28px] md:mt-7 md:text-[34px]">
                 Una lectura crítica del delito informático más cotidiano del país: ley, impacto psicológico, patrones de engaño y prevención ciudadana.
               </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a href="#entradas" className="inline-flex items-center gap-2 rounded-full bg-paper px-5 py-3 mono text-[12px] uppercase tracking-widest text-ink transition-transform hover:-translate-y-0.5">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap">
+                <a href="#entradas" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-paper px-4 py-3 mono text-[11px] uppercase tracking-[0.18em] text-ink transition-transform hover:-translate-y-0.5 sm:w-auto sm:px-5 sm:text-[12px] sm:tracking-widest">
                   Empezar a leer <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <a href="#prevencion" className="inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-3 mono text-[12px] uppercase tracking-widest text-paper transition-colors hover:bg-white/10">
+                <a href="#prevencion" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-4 py-3 mono text-[11px] uppercase tracking-[0.18em] text-paper transition-colors hover:bg-white/10 sm:w-auto sm:px-5 sm:text-[12px] sm:tracking-widest">
                   Ver prevención
                 </a>
               </div>
             </div>
 
             <aside className="col-span-12 lg:col-span-4">
-              <div className="rounded-[2rem] border border-white/15 bg-white/10 p-5 backdrop-blur-md">
+              <div className="rounded-[1.6rem] border border-white/15 bg-white/10 p-4 backdrop-blur-md sm:rounded-[2rem] sm:p-5">
                 <div className="mb-4 flex items-center justify-between gap-4">
                   <div className="eyebrow text-paper-muted">En este número</div>
                   <BookOpen className="h-5 w-5 text-accent-light" />
@@ -557,9 +557,9 @@ function Hero() {
                 <ol className="space-y-2.5">
                   {entries.map((e) => (
                     <li key={e.num}>
-                      <a href={e.sectionId ? `#${e.sectionId}` : "#entradas"} className="group flex items-baseline gap-3 rounded-2xl px-3 py-2 text-paper-muted transition-colors hover:bg-white/10 hover:text-paper">
+                      <a href={e.sectionId ? `#${e.sectionId}` : "#entradas"} className="group flex items-baseline gap-3 rounded-2xl px-2.5 py-2 text-paper-muted transition-colors hover:bg-white/10 hover:text-paper sm:px-3">
                         <span className="mono w-7 text-[11px] text-accent-light">{e.num}</span>
-                        <span className="serif text-xl leading-tight">{e.title}</span>
+                        <span className="serif text-[20px] leading-tight sm:text-xl">{e.title}</span>
                       </a>
                     </li>
                   ))}
@@ -614,13 +614,13 @@ function AuthorProfile() {
   return (
     <section id="autora" className="bg-paper py-8 md:py-12">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div ref={ref} className="fade-in-up overflow-hidden rounded-[2.4rem] border border-rule bg-ink text-paper shadow-deep">
+        <div ref={ref} className="fade-in-up overflow-hidden rounded-[1.8rem] border border-rule bg-ink text-paper shadow-deep md:rounded-[2.4rem]">
           <div className="grid gap-0 lg:grid-cols-[0.95fr_1.35fr]">
-            <div className="relative overflow-hidden p-7 md:p-10">
+            <div className="relative overflow-hidden p-6 md:p-10">
               <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/35 blur-3xl" />
               <div className="relative z-10">
                 <div className="eyebrow text-accent-light">Datos de identificación</div>
-                <h2 className="serif mt-4 max-w-md text-5xl leading-none text-paper md:text-7xl">
+                <h2 className="serif mt-4 max-w-md text-[42px] leading-none text-paper md:text-7xl">
                   Autora del <em className="italic text-accent-light">blog</em>
                 </h2>
                 <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-paper-muted">
@@ -633,7 +633,7 @@ function AuthorProfile() {
               {details.map((item) => (
                 <article key={item.label} className="rounded-[1.6rem] border border-white/10 bg-white/[0.07] p-5 backdrop-blur-sm">
                   <div className="mono text-[10px] uppercase tracking-[0.2em] text-accent-light">{item.label}</div>
-                  <div className="serif mt-3 text-3xl leading-tight text-paper md:text-4xl">{item.value}</div>
+                  <div className="serif mt-3 text-[28px] leading-tight text-paper md:text-4xl">{item.value}</div>
                 </article>
               ))}
             </div>
@@ -687,22 +687,22 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-controls={panelId}
-        className="grid w-full grid-cols-12 gap-x-4 gap-y-4 px-5 py-9 text-left md:px-8 md:py-12"
+        className="grid w-full grid-cols-12 gap-x-3 gap-y-4 px-4 py-7 text-left md:gap-x-4 md:px-8 md:py-12"
       >
         <div className="col-span-2 md:col-span-1">
-          <span className="chapter-num serif text-4xl text-ink-2 transition-colors md:text-5xl">{entry.num}</span>
+          <span className="chapter-num serif text-3xl text-ink-2 transition-colors md:text-5xl">{entry.num}</span>
         </div>
         <div className="col-span-10 md:col-span-8">
           <div className="eyebrow">{entry.chapter} · {entry.readTime} de lectura</div>
-          <h3 className="serif mt-3 text-3xl leading-[1.05] text-ink md:text-[48px]">{entry.title}</h3>
-          <p className="serif mt-3 text-lg italic text-muted-ink md:text-xl">{entry.kicker}</p>
+          <h3 className="serif mt-3 text-[30px] leading-[1.05] text-ink md:text-[48px]">{entry.title}</h3>
+          <p className="serif mt-3 text-[18px] leading-snug italic text-muted-ink md:text-xl">{entry.kicker}</p>
           <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-ink-2 md:text-[16px]">{entry.preview}</p>
         </div>
         <div className="col-span-12 flex items-start gap-3 md:col-span-3 md:justify-end md:pt-2">
           <span className="hidden mono text-[11px] uppercase tracking-widest text-muted-ink md:inline">
             {open ? "Cerrar" : "Leer"}
           </span>
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink text-ink transition-colors hover:bg-ink hover:text-paper">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink text-ink transition-colors hover:bg-ink hover:text-paper md:h-11 md:w-11">
             {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
           </span>
         </div>
@@ -715,7 +715,7 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
         className="chapter-content"
       >
         <div className="chapter-content-inner">
-          <div className="grid grid-cols-12 gap-x-4 px-5 pb-14 md:px-8 md:pb-20">
+          <div className="grid grid-cols-12 gap-x-4 px-4 pb-12 md:px-8 md:pb-20">
             <div className="hidden md:col-span-1 md:block" />
             <div className="dropcap col-span-12 md:col-span-10 lg:col-span-8">
               {entry.render()}
@@ -749,7 +749,7 @@ function IndexSection() {
           </p>
         </div>
 
-        <div className="rounded-[2.4rem] border border-rule bg-surface shadow-soft">
+        <div className="overflow-hidden rounded-[1.8rem] border border-rule bg-surface shadow-soft md:rounded-[2.4rem]">
           {entries.map((entry, index) => (<EntryItem key={entry.num} entry={entry} index={index} />))}
         </div>
       </div>
@@ -780,7 +780,7 @@ function References() {
 function Footer() {
   return (
     <footer id="referencias" className="scroll-mt-20 bg-ink text-paper">
-      <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <div className="mx-auto max-w-7xl px-5 py-16 md:py-20 lg:px-8">
         <div className="grid grid-cols-12 gap-x-6 gap-y-12">
           <div className="col-span-12 md:col-span-5">
             <div className="eyebrow text-accent-light">Colofón</div>
