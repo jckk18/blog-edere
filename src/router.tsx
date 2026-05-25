@@ -4,9 +4,11 @@ import { routeTree } from "./routeTree.gen";
 
 export const getRouter = () => {
   const queryClient = new QueryClient();
+  const basepath = import.meta.env.BASE_URL === "/" ? "/" : import.meta.env.BASE_URL.replace(/\/$/, "");
 
   const router = createRouter({
     routeTree,
+    basepath,
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
@@ -14,3 +16,4 @@ export const getRouter = () => {
 
   return router;
 };
+
