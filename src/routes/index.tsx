@@ -1,22 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import {
-  AlertTriangle,
-  ArrowUpRight,
-  BookOpen,
-  Brain,
-  Check,
-  CheckCircle2,
-  CircleDot,
-  Fingerprint,
-  Landmark,
-  Menu,
-  Minus,
-  Plus,
-  Scale,
-  ShieldCheck,
-  X,
-} from "lucide-react";
+import { TriangleAlert as AlertTriangle, ArrowUpRight, BookOpen, Brain, Check, CircleCheck as CheckCircle2, CircleDot, FingerprintPattern as Fingerprint, Landmark, Menu, Minus, Plus, Scale, ShieldCheck, X } from "lucide-react";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -682,7 +666,7 @@ function EntryItem({ entry, index }: { entry: Entry; index: number }) {
       </button>
 
       <div className="grid transition-[grid-template-rows] duration-700 ease-out" style={{ gridTemplateRows: open ? "1fr" : "0fr" }}>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden min-h-0">
           <div className="grid grid-cols-12 gap-x-4 pb-14 md:pb-20">
             <div className="hidden md:col-span-1 md:block" />
             <div className="dropcap col-span-12 md:col-span-10 lg:col-span-8">
